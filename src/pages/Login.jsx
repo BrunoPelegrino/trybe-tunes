@@ -29,7 +29,7 @@ class Login extends React.Component {
     const { login } = this.state;
     this.setState({ loadingPage: true });
     await createUser({ name: login });
-    this.setState({ loadingPage: false,
+    this.setState({
       redirect: true,
     });
   }
