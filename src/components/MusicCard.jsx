@@ -17,7 +17,7 @@ class MusicCard extends React.Component {
     this.setState({ loading: false,
       checked: true,
     });
-    // console.log(favMusic);
+    console.log(favMusic);
   }
 
   render() {
