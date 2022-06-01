@@ -1,31 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { addSong } from '../services/favoriteSongsAPI';
+import Loading from '../pages/Loading';
 
 class MusicCard extends React.Component {
   state = {
-    // loading: false,
-    // checkbox: false,
+    loading: false,
+    checked: false,
     // favMusic: [],
   }
 
   handleChange = async () => {
     const { musics } = this.props;
+    this.setState({ loading: true });
     const favMusic = await addSong(musics);
-    console.log(favMusic);
+    this.setState({ loading: false,
+      checked: true,
+    });
+    // console.log(favMusic);
   }
 
   render() {
     const { music } = this.props;
-    const { trackId } = music;
-    return (
+    const { loading, checked } = this.state;
+    const { trackId, trackName, previewUrl } = music;
+    const loadingElement = <Loading />;
+    const musics = (
       <div>
-        { music.trackName && (
+        { trackName && (
           <div>
             <p>
-              { music.trackName }
+              { trackName }
             </p>
-            <audio data-testid="audio-component" src={ music.previewUrl } controls>
+            <audio data-testid="audio-component" src={ previewUrl } controls>
               <track kind="captions" />
               O seu navegador não suporta o elemento
               {' '}
@@ -38,12 +45,18 @@ class MusicCard extends React.Component {
               <br />
               Favoirta
               <input
+                checked={ checked }
                 data-testid={ `checkbox-music-${trackId}` }
                 type="checkbox"
                 onChange={ this.handleChange }
               />
             </label>
           </div>)}
+      </div>
+    );
+    return (
+      <div>
+        {!loading ? musics : loadingElement}
       </div>
     );
   }
