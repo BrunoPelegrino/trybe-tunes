@@ -12,13 +12,24 @@ class MusicCard extends React.Component {
 
   handleChange = async () => {
     const { musics } = this.props;
-    this.setState({ loading: true });
-    const favMusic = await addSong(musics);
-    this.setState({ loading: false,
-      checked: true,
-    });
-    console.log(favMusic);
+    const { checked } = this.state;
+    if (checked) {
+      this.setState({ checked: false });
+    } if (!checked) {
+      this.setState({ loading: true });
+      await addSong(musics);
+      this.setState({ loading: false,
+        checked: true,
+      // favMusic,
+      });
+    }
   }
+
+  /* check = () => {
+    if (checked === true) {
+      this.setState({ checked: false });
+    }
+  } */
 
   render() {
     const { music } = this.props;
