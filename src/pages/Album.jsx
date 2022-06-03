@@ -11,6 +11,7 @@ class Album extends React.Component {
     musics: [],
     collectionName: '',
     artistName: '',
+    img: '',
   }
 
   componentDidMount = async () => {
@@ -19,16 +20,18 @@ class Album extends React.Component {
     this.setState({ musics,
       collectionName: musics[0].collectionName,
       artistName: musics[0].artistName,
+      img: musics[0].artworkUrl100,
     });
   }
 
   render() {
-    const { musics, artistName, collectionName } = this.state;
+    const { musics, artistName, collectionName, img } = this.state;
     return (
       <div data-testid="page-album">
         <Header />
         <h2 data-testid="album-name">{collectionName}</h2>
         <h3 data-testid="artist-name">{artistName}</h3>
+        <img src={ img } alt={ collectionName } />
 
         {
           musics.map((music, index) => (
