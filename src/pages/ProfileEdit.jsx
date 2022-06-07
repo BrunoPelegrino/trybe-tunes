@@ -45,9 +45,8 @@ class ProfileEdit extends React.Component {
 
   saveBtn = async () => {
     const { name, email, image, description } = this.state;
-    this.setState({ loading: true });
-    await updateUser();
-    this.setState({
+    this.setState({ loading: false });
+    await updateUser({
       name,
       email,
       image,
