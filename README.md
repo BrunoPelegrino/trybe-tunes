@@ -1,6 +1,6 @@
 # :headphones: TrybeTunes
 
-## :page_with_curl: About
+## :page_with_curl:
 
 Projeto em reactjs desenvolvido por [Bruno Pelegrino](https://www.linkedin.com/in/bruno-pelegrino/) no módulo de front-end da [Trybe](https://www.betrybe.com/)
 
