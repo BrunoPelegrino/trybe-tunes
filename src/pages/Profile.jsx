@@ -28,7 +28,7 @@ class Profile extends React.Component {
   render() {
     const { loading, description, name, image, email } = this.state;
     return (
-      <div data-testid="page-profile">
+      <div style={ { background: `url(${requisito}` } } data-testid="page-profile">
         <Header />
         {loading ? <Loading />
           : (

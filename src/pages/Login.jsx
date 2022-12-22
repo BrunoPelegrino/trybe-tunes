@@ -1,7 +1,11 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 import { Redirect } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 import { createUser } from '../services/userAPI';
 import Loading from './Loading';
+// import requisito from '../images/requisito.png';
 
 class Login extends React.Component {
   state = {
@@ -37,26 +41,34 @@ class Login extends React.Component {
   render() {
     const { buttonDisabled, login, loadingPage, redirect } = this.state;
     return (
-      <div data-testid="page-login">
+      <div
+        // class="d-flex justify-content-center align-items-center"
+        data-testid="page-login"
+      >
         <form>
-          <label htmlFor="login-name-input">
-            Login
-            <input
+          <InputGroup className="mb-3">
+            <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+            <Form.Control
+              placeholder="Username"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
               name="login"
               onChange={ this.handleChange }
               login={ login }
               data-testid="login-name-input"
               type="text"
             />
-          </label>
-          <button
+          </InputGroup>
+          <Button
+            className="btnLogin"
+            variant="success"
             onClick={ this.handleClick }
             disabled={ buttonDisabled }
             data-testid="login-submit-button"
             type="button"
           >
-            Entrar
-          </button>
+            Login
+          </Button>
           { loadingPage && <Loading /> }
           { redirect && <Redirect to="/search" /> }
         </form>
